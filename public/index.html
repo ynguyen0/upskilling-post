@@ -1,33 +1,85 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Temporal assessment starter</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Juniper · A little room for someone</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <main>
-      <p class="eyebrow">Temporal assessment starter</p>
-      <h1>Your environment is connected.</h1>
-      <p class="intro">
-        This neutral demonstration starts a Workflow, waits durably for a
-        Signal, and then completes. Replace it with the experience your
-        customer needs.
-      </p>
-      <section class="card">
-        <h2 id="phase">Ready</h2>
-        <p id="message">Start the demonstration to verify the setup.</p>
-        <button id="start">Start demo Workflow</button>
-        <button id="continue" hidden>Send continue Signal</button>
-        <p class="request-id" id="request-id"></p>
-      </section>
-      <p class="footer">
-        Inspect the execution at
-        <a href="http://localhost:8233" target="_blank">localhost:8233</a>.
-      </p>
-    </main>
+    <aside class="sidebar">
+      <a class="brand" href="/" aria-label="Juniper home"
+        ><span class="brand-mark">j.</span
+        ><span>juniper<small>SALON & STUDIO</small></span></a
+      >
+      <div class="workspace-label">YOUR FRONT DESK</div>
+      <nav aria-label="Main navigation">
+        <button class="nav-item active" data-view="openings">
+          <span>◫</span> Openings <b id="opening-count">—</b></button
+        ><button class="nav-item" data-view="waitlist">
+          <span>☷</span> Waitlist <b id="waitlist-count">—</b></button
+        ><button class="nav-item" data-view="activity">
+          <span>◷</span> Activity
+        </button>
+      </nav>
+      <div class="sidebar-note">
+        <span class="leaf">✳</span>
+        <h3>A little room.<br />A happy client.</h3>
+        <p>Thoughtful offers, one person at a time.</p>
+      </div>
+      <div class="staff">
+        <span class="avatar">LC</span>
+        <div>Lena & Carla<small>Juniper front desk</small></div>
+      </div>
+    </aside>
+    <div class="main-shell">
+      <header class="topbar">
+        <span
+          >Juniper Salon <span class="slash">/</span>
+          <span id="breadcrumb">Openings</span></span
+        >
+        <div class="connection">
+          <span id="connection-dot" class="dot"></span
+          ><span id="connection-label">Connecting…</span>
+        </div>
+      </header>
+      <main>
+        <div id="error" class="error" role="alert" hidden></div>
+        <div class="page-heading">
+          <div>
+            <div class="eyebrow" id="today">
+              YOUR DAY, WITH A LITTLE MORE ROOM
+            </div>
+            <h1 id="page-title">Make room for a good day.</h1>
+            <p id="page-subtitle">Fill the gaps. Keep the personal touch.</p>
+          </div>
+          <button class="button primary" id="add-main">＋ Add opening</button>
+        </div>
+        <section
+          id="metrics"
+          class="metrics"
+          aria-label="Business outcomes"
+        ></section>
+        <section id="attention" aria-label="Needs staff attention"></section>
+        <section id="content"></section>
+        <footer>
+          <span>Made for the moments between appointments.</span
+          ><span>One offer at a time <i>•</i> Mon–Sat, 9–7 Central</span>
+        </footer>
+        <details class="demo-controls" open>
+          <summary>
+            <span class="demo-tag">PROTOTYPE</span> Demo workspace & client
+            replies
+            <span class="demo-summary"
+              >Simulated texts · Square updated by staff</span
+            >
+          </summary>
+          <div id="demo-content"></div>
+        </details>
+      </main>
+    </div>
+    <dialog id="modal"><div id="modal-content"></div></dialog>
+    <div id="toast" role="status" hidden></div>
     <script src="/app.js"></script>
   </body>
 </html>
-

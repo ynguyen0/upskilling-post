@@ -1,0 +1,93 @@
+
+> temporal-assessment-starter@1.0.0 test
+> tsx --test tests/workflow.test.ts
+
+TAP version 13
+# Subtest: Central business calendar carries remaining time overnight, skips Sunday, and observes DST
+ok 1 - Central business calendar carries remaining time overnight, skips Sunday, and observes DST
+  ---
+  duration_ms: 0.567125
+  type: 'test'
+  ...
+# Subtest: real Temporal workflows enforce Juniper rules
+    # Subtest: review, ambiguous reply, timeout, late YES, timely YES, duplicate YES and Square
+    ok 1 - review, ambiguous reply, timeout, late YES, timely YES, duplicate YES and Square
+      ---
+      duration_ms: 626.480292
+      type: 'test'
+      ...
+    # Subtest: competing openings never offer the same client together
+    ok 2 - competing openings never offer the same client together
+      ---
+      duration_ms: 156.3455
+      type: 'test'
+      ...
+    # Subtest: failed delivery alerts staff and moves on; NO stays waitlisted; STOP removes
+    ok 3 - failed delivery alerts staff and moves on; NO stays waitlisted; STOP removes
+      ---
+      duration_ms: 194.878459
+      type: 'test'
+      ...
+    # Subtest: late-night cancellation sends nothing until business morning
+    ok 4 - late-night cancellation sends nothing until business morning
+      ---
+      duration_ms: 89.343083
+      type: 'test'
+      ...
+    # Subtest: tomorrow offer carries remaining hour overnight
+    ok 5 - tomorrow offer carries remaining hour overnight
+      ---
+      duration_ms: 78.855042
+      type: 'test'
+      ...
+    # Subtest: real durable timer fires at one-hour cutoff without clock commands
+    ok 6 - real durable timer fires at one-hour cutoff without clock commands
+      ---
+      duration_ms: 2117.935333
+      type: 'test'
+      ...
+    # Subtest: staff cancellation invalidates active offer and sends apology
+    ok 7 - staff cancellation invalidates active offer and sends apology
+      ---
+      duration_ms: 96.344958
+      type: 'test'
+      ...
+    # Subtest: failed first recipient advances automatically to the next reviewed client
+    ok 8 - failed first recipient advances automatically to the next reviewed client
+      ---
+      duration_ms: 83.399125
+      type: 'test'
+      ...
+    # Subtest: duplicate Update ID produces one command effect; phone formatting cannot duplicate a client
+    ok 9 - duplicate Update ID produces one command effect; phone formatting cannot duplicate a client
+      ---
+      duration_ms: 46.708292
+      type: 'test'
+      ...
+    # Subtest: reopening an exhausted queue cannot overlap a new active slot
+    ok 10 - reopening an exhausted queue cannot overlap a new active slot
+      ---
+      duration_ms: 42.614042
+      type: 'test'
+      ...
+    # Subtest: worker restart replays existing offer without duplicate message
+    ok 11 - worker restart replays existing offer without duplicate message
+      ---
+      duration_ms: 84.170125
+      type: 'test'
+      ...
+    1..11
+ok 2 - real Temporal workflows enforce Juniper rules
+  ---
+  duration_ms: 5681.684083
+  type: 'test'
+  ...
+1..2
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6358.864833

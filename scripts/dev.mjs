@@ -1,11 +1,31 @@
 import { connect } from "node:net";
 import { spawn, spawnSync } from "node:child_process";
 
-const compose = spawnSync("docker", ["compose", "up", "-d", "temporal"], {
-  stdio: "inherit",
-});
+const candidates = [
+  ["docker", ["compose"]],
+  [
+    "/Applications/Docker.app/Contents/Resources/cli-plugins/docker-compose",
+    [],
+  ],
+  ["docker-compose", []],
+];
+const selected = candidates.find(
+  ([bin, args]) =>
+    spawnSync(bin, [...args, "version"], { stdio: "ignore" }).status === 0,
+);
+if (!selected) {
+  console.error(
+    "Docker Compose was not found. Install Docker Desktop, or run dev:api and dev:worker against an existing Temporal server.",
+  );
+  process.exit(1);
+}
+const compose = spawnSync(
+  selected[0],
+  [...selected[1], "up", "-d", "temporal"],
+  { stdio: "inherit" },
+);
 if (compose.status !== 0) {
-  console.error("\nCould not start Temporal. Is Docker Desktop running?");
+  console.error("Could not start Temporal. Is Docker Desktop running?");
   process.exit(compose.status ?? 1);
 }
 
@@ -48,7 +68,6 @@ for (const child of children) {
     }
   });
 }
-console.log("\nStarter is launching:");
+console.log("\nJuniper Salon is launching:");
 console.log("  App:         http://localhost:3000");
 console.log("  Temporal UI: http://localhost:8233\n");
-
